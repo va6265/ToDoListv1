@@ -9,7 +9,8 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.set('view engine', 'ejs');
 app.use(express.static("public"))
 
-mongoose.connect("mongodb://localhost:27017/toDoListDB")
+mongoose.connect("mongodb+srv://admin-vaibhav:%40rdGLSyf%234efpmR@cluster0.ripwa3g.mongodb.net/toDoListDB")
+//admin password: @rdGLSyf#4efpmR
 
 const itemSchema = new mongoose.Schema({
     name: String
@@ -116,7 +117,12 @@ app.post("/delete",function(req,res){
     }
 })
 
-app.listen("3000", function () {
+let port = process.env.PORT;
+if (port == null || port == "") {
+    port = 3000;
+}
+
+app.listen(port, function () {
     console.log("server is running on port 3000");
 })
 
